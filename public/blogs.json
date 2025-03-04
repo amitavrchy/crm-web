@@ -1,0 +1,92 @@
+[
+    {
+        "_id": "1",
+        "title": "How to Build an Employer Brand That Attracts Top Talent",
+        "author": "Talent",
+        "date_published": "2024-12-14",
+        "excerpt": "Time management can improve your team's efficiency. Learn these 10 essential tips for managing your time at work.",
+        "category": "EOR",
+        "image": "https://source.unsplash.com/random/800x600?sig=51"
+    },
+    {
+        "_id": "2",
+        "title": "How to Improve Employee Productivity in Hybrid Workspaces",
+        "author": "Demand Talent",
+        "date_published": "2024-12-24",
+        "excerpt": "Difficult conversations can be tough, but necessary. Learn how to approach challenging conversations with employees.",
+        "category": "Onboarding",
+        "image": "https://source.unsplash.com/random/800x600?sig=30"
+    },
+    {
+        "_id": "3",
+        "title": "The Rise of Artificial Intelligence in Recruitment",
+        "author": "lent Demand",
+        "date_published": "2024-12-20",
+        "excerpt": "Attracting Gen Z talent requires a different approach. Here’s what you need to know about recruiting this new generation of workers.",
+        "category": "Remote Work",
+        "image": "https://source.unsplash.com/random/800x600?sig=2"
+    },
+    {
+        "_id": "4",
+        "title": "How to Handle Employee Burnout in a Remote Environment",
+        "author": "De Tale",
+        "date_published": "2024-12-13",
+        "excerpt": "Employee referral programs are an effective way to hire quality talent. Learn how to build a successful referral program.",
+        "category": "PEO",
+        "image": "https://source.unsplash.com/random/800x600?sig=82"
+    },
+    {
+        "_id": "5",
+        "title": "Managing Remote Teams: Tools and Strategies",
+        "author": "Demand Talent",
+        "date_published": "2024-12-30",
+        "excerpt": "Performance reviews are essential for employee growth. Find out how to conduct effective performance reviews.",
+        "category": "PEO",
+        "image": "https://source.unsplash.com/random/800x600?sig=49"
+    },
+    {
+        "_id": "6",
+        "title": "Creating a Successful Employee Development Plan",
+        "author": "Demand Talent",
+        "date_published": "2024-12-10",
+        "excerpt": "Diversity hiring brings a wealth of new perspectives to your team. Here's how you can foster diversity in your hiring practices.",
+        "category": "HR",
+        "image": "https://source.unsplash.com/random/800x600?sig=78"
+    },
+    {
+        "_id": "7",
+        "title": "How to Attract Gen Z Talent to Your Organization",
+        "author": "Demand Talent",
+        "date_published": "2024-12-19",
+        "excerpt": "Recruiting Gen Z talent is a challenge. Here's how to adjust your recruitment approach to better attract this new generation.",
+        "category": "Hiring",
+        "image": "https://source.unsplash.com/random/800x600?sig=65"
+    },
+    {
+        "_id": "8",
+        "title": "Optimizing Your Hiring Process with Technology",
+        "author": "Demand Talent",
+        "date_published": "2024-12-16",
+        "excerpt": "Technology can streamline your hiring process. Explore the tools and strategies that can make recruitment more efficient.",
+        "category": "AI",
+        "image": "https://source.unsplash.com/random/800x600?sig=22"
+    },
+    {
+        "_id": "9",
+        "title": "Employee Motivation: Understanding What Drives Performance",
+        "author": "Demand Talent",
+        "date_published": "2024-12-17",
+        "excerpt": "Personalizing recruitment with AI is changing the landscape of talent acquisition. Discover how this technology can help you find the best candidates.",
+        "category": "Remote Work",
+        "image": "https://source.unsplash.com/random/800x600?sig=21"
+    },
+    {
+        "_id": "10",
+        "title": "Scaling Your Startup: When and How to Hire",
+        "author": "Demand Talent",
+        "date_published": "2024-12-22",
+        "excerpt": "Attracting Gen Z talent requires a different approach. Here’s what you need to know about recruiting this new generation of workers.",
+        "category": "Hiring",
+        "image": "https://source.unsplash.com/random/800x600?sig=59"
+    }
+]
