@@ -6,13 +6,26 @@ import { FaEnvelope, FaPhoneAlt, FaBars, FaTimes } from "react-icons/fa";
 import Image from "next/image";
 import { useSession, signOut } from "next-auth/react";
 import logo from "../../../public/drWhiteLogo.png";
+import Link from "next/link";
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const router = useRouter();
     const { data: session, status } = useSession();
-
     const userType = session?.user?.userType?.toLowerCase();
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    let dropdownTimeout;
+
+    const handleMouseEnter = () => {
+        clearTimeout(dropdownTimeout);
+        setIsDropdownOpen(true);
+    };
+
+    const handleMouseLeave = () => {
+        dropdownTimeout = setTimeout(() => {
+            setIsDropdownOpen(false);
+        }, 200); // 200ms delay before closing
+    };
 
     const dashboardRoutes = {
         admin: "/dashboard/admin",
@@ -66,15 +79,15 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <a href="/signUp" className="hover:text-yellow-400 transition">
+                            <Link href="/signUp" className="hover:text-yellow-400 transition">
                                 Become a vendor
-                            </a>
-                            <a href="/signIn" className="hover:text-yellow-400 transition">
+                            </Link>
+                            <Link href="/signIn" className="hover:text-yellow-400 transition">
                                 Login
-                            </a>
-                            <a href="/signUp" className="hover:text-yellow-400 transition">
+                            </Link>
+                            <Link href="/signUp" className="hover:text-yellow-400 transition">
                                 Register
-                            </a>
+                            </Link>
                         </>
                     )}
                 </div>
@@ -83,23 +96,27 @@ const Navbar = () => {
             {/* Main Navbar */}
             <nav className="bg-gray-800 text-white py-4">
                 <div className="container mx-auto px-6 flex items-center justify-between">
-                    <a href="/homePage">
+                    <Link href="/">
                         <Image src={logo} alt="LOGO" width={80} height={60} className="opacity-70" />
-                    </a>
+                    </Link>
 
                     {/* Desktop Navigation */}
                     <div className="hidden lg:flex items-center space-x-8">
-                        <a href="/services" className="hover:text-gray-400 transition">Services</a>
-                        <a href="/postJob" className="hover:text-gray-400 transition">Post a job</a>
-                        <a href="/allJobs" className="hover:text-gray-400 transition">All Jobs</a>
-                        <a href="/contactUs" className="hover:text-gray-400 transition">Contact Us</a>
-                        <a href="/blogs" className="hover:text-gray-400 transition">Blogs</a>
-                        <a href="/projects" className="hover:text-gray-400 transition">Projects</a>
-                        <a href="/FAQ" className="hover:text-gray-400 transition">FAQ</a>
-                        <a href="/scheduleMeet" className="hover:text-gray-400 transition">Schedule A Meeting</a>
-                        {userType === "vendor" && <a href="/accountApprovalVendor" className="hover:text-gray-400 transition">Approval Vendor</a>}
-                        {userType === "employee" && <a href="/accountApprovalEmployee" className="hover:text-gray-400 transition">Approval Employee</a>}
-                        <a href="/aboutUs" className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg transition">About us</a>
+                        <Link href="/" className="hover:text-gray-400 transition">Home</Link>
+
+                        {/* Services Dropdown */}
+                        <div
+                            className="relative"
+                            onMouseEnter={() => setIsDropdownOpen(true)}
+                            onMouseLeave={() => handleMouseLeave}
+                        >
+                            <button className="hover:text-gray-400 transition flex items-center">
+                                Our Services ▼
+                            </button>
+                        </div>
+                        <Link href="/alljobs" className="hover:text-gray-400 transition">Job Search</Link>
+                        <Link href="/contactUs" className="hover:text-gray-400 transition">Contact Us</Link>
+                        <Link href="/aboutUs" className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg transition">About Us</Link>
                     </div>
 
                     {/* Mobile Menu Toggle */}
@@ -107,6 +124,117 @@ const Navbar = () => {
                         <FaBars />
                     </button>
                 </div>
+                {/* Mega Menu (Full Width Under Logo) */}
+                {isDropdownOpen && (
+    <div
+        className="absolute w-full left-0 mx-auto bg-gradient-to-b from-gray-100 to-gray-300 shadow-2xl rounded-lg py-6 px-12 grid grid-cols-3 gap-8 text-gray-800 z-50"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+    >
+        {/* Recruitment Services */}
+        <div className="bg-white p-6 rounded-xl shadow-md transition-transform transform hover:scale-105">
+            <h3 className="font-bold text-lg text-gray-800 border-b pb-2 mb-4">🚀 Recruitment Service</h3>
+            <ul className="space-y-3">
+                
+                <li className="font-semibold">
+                    <i className="fas fa-user-tie mr-2"></i> <span className="text-gray-900 font-bold">Employer Support</span>
+                    <ul className="ml-4 mt-2 space-y-2">
+                        <li><Link href="/talentAcquisition"><i className="fas fa-check-circle mr-2"></i> Talent Acquisition & Workforce Planning</Link></li>
+                        <li><Link href="/background-checks"><i className="fas fa-check-circle mr-2"></i> Background Checks & Screening</Link></li>
+                        <li><Link href="/diversity-inclusion"><i className="fas fa-check-circle mr-2"></i> Diversity & Inclusion Hiring Solutions</Link></li>
+                    </ul>
+                </li>
+                <li className="font-semibold">
+                    <i className="fas fa-graduation-cap mr-2"></i> <span className="text-gray-900 font-bold">Candidate Services</span>
+                    <ul className="ml-4 mt-2 space-y-2">
+                        <li><Link href="/cv-writing"><i className="fas fa-check-circle mr-2"></i> CV Writing & Interview Coaching</Link></li>
+                        <li><Link href="/career-counseling"><i className="fas fa-check-circle mr-2"></i> Career Counseling & Job Matching</Link></li>
+                        <li><Link href="/skill-development"><i className="fas fa-check-circle mr-2"></i> Skill Development & Training</Link></li>
+                    </ul>
+                </li>
+                <li className="font-semibold">
+                    <i className="fas fa-search mr-2"></i> <span className="text-gray-900 font-bold">Specialized Recruitment</span>
+                    <ul className="ml-4 mt-2 space-y-2">
+                        <li><Link href="/it-tech-staffing"><i className="fas fa-check-circle mr-2"></i> IT & Tech Staffing</Link></li>
+                        <li><Link href="/healthcare-nursing"><i className="fas fa-check-circle mr-2"></i> Healthcare & Nursing Placement</Link></li>
+                        <li><Link href="/finance-accounting"><i className="fas fa-check-circle mr-2"></i> Finance & Accounting Recruitment</Link></li>
+                        <li><Link href="/engineering-construction"><i className="fas fa-check-circle mr-2"></i> Engineering & Construction Recruitment</Link></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        {/* Community Management Service */}
+        <div className="bg-white p-6 rounded-xl shadow-md transition-transform transform hover:scale-105">
+            <h3 className="font-bold text-lg text-gray-800 border-b pb-2 mb-4">🏡 Community Management</h3>
+            <ul className="space-y-3">
+                <li className="font-semibold">
+                    <i className="fas fa-users mr-2"></i> <span className="text-gray-900 font-bold">Resident & Tenant Relations</span>
+                    <ul className="ml-4 mt-2 space-y-2">
+                        <li><Link href="/onboarding"><i className="fas fa-check-circle mr-2"></i> Onboarding & Welcome Services</Link></li>
+                        <li><Link href="/conflict-resolution"><i className="fas fa-check-circle mr-2"></i> Conflict Resolution & Mediation</Link></li>
+                        <li><Link href="/community-engagement"><i className="fas fa-check-circle mr-2"></i> Community Engagement & Events</Link></li>
+                    </ul>
+                </li>
+                <li className="font-semibold">
+                    <i className="fas fa-cogs mr-2"></i> <span className="text-gray-900 font-bold">Property & HOA Management</span>
+                    <ul className="ml-4 mt-2 space-y-2">
+                        <li><Link href="/lease-management"><i className="fas fa-check-circle mr-2"></i> Lease & Rental Management</Link></li>
+                        <li><Link href="/policy-implementation"><i className="fas fa-check-circle mr-2"></i> Policy Implementation & Compliance</Link></li>
+                        <li><Link href="/vendor-coordination"><i className="fas fa-check-circle mr-2"></i> Vendor & Service Coordination</Link></li>
+                    </ul>
+                </li>
+                <li className="font-semibold">
+                    <i className="fas fa-laptop-house mr-2"></i> <span className="text-gray-900 font-bold">Digital & Social Engagement</span>
+                    <ul className="ml-4 mt-2 space-y-2">
+                        <li><Link href="/social-media-moderation"><i className="fas fa-check-circle mr-2"></i> Social Media & Online Community Moderation</Link></li>
+                        <li><Link href="/announcement-management"><i className="fas fa-check-circle mr-2"></i> Communication & Announcement Management</Link></li>
+                        <li><Link href="/emergency-communication"><i className="fas fa-check-circle mr-2"></i> Emergency & Crisis Communication</Link></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        {/* Facility Management Service */}
+        <div className="bg-white p-6 rounded-xl shadow-md transition-transform transform hover:scale-105">
+            <h3 className="font-bold text-lg text-gray-800 border-b pb-2 mb-4">🏢 Facility Management</h3>
+            <ul className="space-y-3">
+                <li className="font-semibold">
+                    <i className="fas fa-tools mr-2"></i> <span className="text-gray-900 font-bold">Building & Property Maintenance</span>
+                    <ul className="ml-4 mt-2 space-y-2">
+                        <li><Link href="/preventative-maintenance"><i className="fas fa-check-circle mr-2"></i> Preventative Maintenance & Repairs</Link></li>
+                        <li><Link href="/janitorial-services"><i className="fas fa-check-circle mr-2"></i> Janitorial & Housekeeping Services</Link></li>
+                        <li><Link href="/landscaping-services"><i className="fas fa-check-circle mr-2"></i> Landscaping & Groundskeeping</Link></li>
+                    </ul>
+                </li>
+                <li className="font-semibold">
+                    <i className="fas fa-shield-alt mr-2"></i> <span className="text-gray-900 font-bold">Security & Safety Management</span>
+                    <ul className="ml-4 mt-2 space-y-2">
+                        <li><Link href="/cctv-surveillance"><i className="fas fa-check-circle mr-2"></i> CCTV Surveillance & Security Staffing</Link></li>
+                        <li><Link href="/fire-safety"><i className="fas fa-check-circle mr-2"></i> Fire Safety & Emergency Response</Link></li>
+                        <li><Link href="/access-control"><i className="fas fa-check-circle mr-2"></i> Access Control & Visitor Management</Link></li>
+                    </ul>
+                </li>
+                <li className="font-semibold">
+                    <i className="fas fa-bolt mr-2"></i> <span className="text-gray-900 font-bold">Utility & Energy Management</span>
+                    <ul className="ml-4 mt-2 space-y-2">
+                        <li><Link href="/hvac-services"><i className="fas fa-check-circle mr-2"></i> HVAC, Electrical, & Plumbing Services</Link></li>
+                        <li><Link href="/energy-efficiency"><i className="fas fa-check-circle mr-2"></i> Energy Efficiency & Sustainability Consulting</Link></li>
+                        <li><Link href="/waste-management"><i className="fas fa-check-circle mr-2"></i> Waste Management & Recycling Solutions</Link></li>
+                    </ul>
+                </li>
+                <li className="font-semibold">
+                    <i className="fas fa-building mr-2"></i> <span className="text-gray-900 font-bold">Workplace & Office Support</span>
+                    <ul className="ml-4 mt-2 space-y-2">
+                        <li><Link href="/office-space-planning"><i className="fas fa-check-circle mr-2"></i> Office Space Planning & Setup</Link></li>
+                        <li><Link href="/cleaning-services"><i className="fas fa-check-circle mr-2"></i> Cleaning & Sanitization Services</Link></li>
+                        <li><Link href="/it-support"><i className="fas fa-check-circle mr-2"></i> IT & Technical Support</Link></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+)}
 
                 {/* Mobile Sidebar */}
                 {isSidebarOpen && (
@@ -120,17 +248,23 @@ const Navbar = () => {
                                 </button>
                             </div>
                             <div className="flex flex-col space-y-6 my-6 px-4">
-                                <a href="/services" className="text-lg hover:text-gray-400 transition">Services</a>
-                                <a href="/postJob" className="text-lg hover:text-gray-400 transition">Post a job</a>
-                                <a href="/allJobs" className="text-lg hover:text-gray-400 transition">All Jobs</a>
-                                <a href="/contactUs" className="text-lg hover:text-gray-400 transition">Contact Us</a>
-                                <a href="/blogs" className="text-lg hover:text-gray-400 transition">Blogs</a>
-                                <a href="/projects" className="text-lg hover:text-gray-400 transition">Projects</a>
-                                <a href="/FAQ" className="text-lg hover:text-gray-400 transition">FAQ</a>
-                                <a href="/scheduleMeet" className="text-lg hover:text-gray-400 transition">Schedule A Meeting</a>
-                                {userType === "vendor" && <a href="/accountApprovalVendor" className="text-lg hover:text-gray-400 transition">Approval Vendor</a>}
-                                {userType === "employee" && <a href="/accountApprovalEmployee" className="text-lg hover:text-gray-400 transition">Approval Employee</a>}
-                                <a href="/aboutUs" className="bg-orange-500 hover:bg-orange-600 text-white text-center px-6 py-2 rounded-lg transition">About us</a>
+                                <Link href="/" className="text-lg hover:text-gray-400 transition">Home</Link>
+
+                                {/* Services Dropdown */}
+                                <div className="relative">
+                                    <button className="text-lg hover:text-gray-400 transition flex items-center">
+                                        Our Services ▼
+                                    </button>
+                                    <div className="ml-4 mt-2 space-y-2">
+                                        <Link href="/services/recruitment" className="block text-gray-300 hover:text-white transition">Recruitment</Link>
+                                        <Link href="/services/community" className="block text-gray-300 hover:text-white transition">Community Services</Link>
+                                        <Link href="/services/facility" className="block text-gray-300 hover:text-white transition">Facility Management</Link>
+                                    </div>
+                                </div>
+
+                                <Link href="/jobSearch" className="text-lg hover:text-gray-400 transition">Job Search</Link>
+                                <Link href="/aboutUs" className="bg-orange-500 hover:bg-orange-600 text-white text-center px-6 py-2 rounded-lg transition">About Us</Link>
+                                <Link href="/contactUs" className="text-lg hover:text-gray-400 transition">Contact Us</Link>
                             </div>
                         </div>
                     </>
