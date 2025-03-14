@@ -5,9 +5,9 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Testimonials from "@/components/Testimonials";
 import Achievements from "@/components/Achievements";
-import img1 from "../../../public/about-us-wte/2.jpg";
-import img2 from "../../../public/about-us-wte/3.jpg";
-import img3 from "../../../public/about-us-wte/2.jpg";
+import img1 from "../../../public/services/19.jpg";
+import img2 from "../../../public/services/20.jpg";
+import img3 from "../../../public/services/21.jpg";
 import heroImg from "../../../public/about-us-wte/2.jpg";
 
 const TalentAcquisition = () => {
@@ -16,14 +16,7 @@ const TalentAcquisition = () => {
       <Navbar />
       
       {/* Hero Section */}
-      <div className="relative text-white py-24 text-center">
-        <Image
-          src={heroImg}
-          alt="Talent Acquisition"
-          layout="fill"
-          objectFit="cover"
-          className="absolute inset-0 w-full h-full z-0"
-        />
+      <div className="bg-gradient-to-r from-blue-900 to-gray-700 relative text-white py-24 text-center">
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative z-10">
           <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight">

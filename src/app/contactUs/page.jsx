@@ -4,9 +4,13 @@ import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import React, { useState } from "react";
 import Image from "next/image";
-import { FaPhoneAlt, FaEnvelope, FaMapMarkerAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
-import img1 from "../../../public/about_service.jpg";
+import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
+import {
+    FaFacebook,
+    FaTwitter,
+    FaLinkedin,
+} from "react-icons/fa";
 import img2 from "../../../public/about-us/about-2.jpg";
 import Chat from "@/components/Chat";
 
@@ -59,17 +63,10 @@ function ContactUs() {
         <div className="flex flex-col min-h-screen">
             <Navbar />
             <main className="flex-grow">
-                {/* Breadcrumb Section */}
-                <div className="relative w-full h-96 mb-8">
-                    <Image
-                        src={img1}
-                        alt="Breadcrumb Background"
-                        layout="fill"
-                        objectFit="cover"
-                        className="opacity-80"
-                    />
+                <div className="bg-gradient-to-r from-blue-900 to-gray-700 relative w-full h-44 mb-8">
+                    <div className="absolute inset-0 bg-black opacity-50"></div>
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
-                        <h1 className="text-4xl font-bold">Contact Us</h1>
+                        <h1 className="text-6xl font-extrabold">Contact Us</h1>
                         <p className="mt-4 text-lg">We’re here to assist you. Feel free to reach out!</p>
                     </div>
                 </div>
@@ -90,18 +87,33 @@ function ContactUs() {
                                 <div className="flex items-center space-x-4">
                                     <FaPhoneAlt className="text-orange-500 text-xl" />
                                     <a href="tel:+1234567890" className="text-lg hover:underline">
-                                        +00000000000
+                                        02038761531
                                     </a>
                                 </div>
                                 <div className="flex items-center space-x-4">
                                     <FaEnvelope className="text-orange-500 text-xl" />
                                     <a href="mailto:contact@yourdomain.com" className="text-lg hover:underline">
-                                        contact@yourdomain.com
+                                        info@demandrecruitmentservices.co.uk
                                     </a>
                                 </div>
                                 <div className="flex items-center space-x-4">
-                                    <FaMapMarkerAlt className="text-orange-500 text-xl" />
+                                    <p className="text-orange-500 text-xl font-bold">Operating Address:</p>
+                                    <p className="text-lg">Demand Recruitment Services Ltd, First Floor Office 3, Ealing House, 33 Hanger Lane, London - W5 3HJ</p>
+                                </div>
+                                <div className="flex items-center space-x-4">
+                                    <p className="text-orange-500 text-xl font-bold">Registered Office Address:</p>
+                                    <p className="text-lg">Demand Recruitment Services Ltd
+                                        20-22 Wenlock Road ,  London England - N1 7GU
+                                    </p>
+                                </div>
+                                <div className="flex items-center space-x-4">
+                                    <p className="text-orange-500 text-xl font-bold">Business Hours:</p>
                                     <p className="text-lg">123 Main Street, City, Country</p>
+                                </div>
+                                <div className="flex gap-6 sm:gap-8 justify-center items-center border border-orange-400 rounded-lg p-4 shadow-md">
+                                    <FaFacebook className="text-orange-600 text-3xl cursor-pointer transition-transform duration-200 hover:scale-110" />
+                                    <FaTwitter className="text-orange-400 text-3xl cursor-pointer transition-transform duration-200 hover:scale-110" />
+                                    <FaLinkedin className="text-orange-700 text-3xl cursor-pointer transition-transform duration-200 hover:scale-110" />
                                 </div>
                             </div>
                         </div>

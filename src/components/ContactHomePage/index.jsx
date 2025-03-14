@@ -1,7 +1,11 @@
 'use client';
 import React, { useState } from 'react'
-import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from 'react-icons/fa';
+import { FaEnvelope, FaPhoneAlt, FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { } from "react-icons/fa";
+import {
+
+} from "react-icons/fa";
 
 function ContactUsHomePage() {
     const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -51,29 +55,41 @@ function ContactUsHomePage() {
             < div className="container mx-auto px-4 py-10" >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     {/* Contact Details */}
-                    <div className="flex flex-col justify-center items-start">
-                        <h2 className="text-3xl font-bold mb-6 text-gray-700">Get In Touch</h2>
-                        <p className="text-lg mb-4">
-                            If you have any questions, feel free to contact us. We’d love to hear from you.
-                        </p>
-
-                        <div className="space-y-6">
-                            <div className="flex items-center space-x-4">
-                                <FaPhoneAlt className="text-orange-500 text-xl" />
-                                <a href="tel:+1234567890" className="text-lg hover:underline">
-                                    +1 234 567 890
-                                </a>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <FaEnvelope className="text-orange-500 text-xl" />
-                                <a href="mailto:contact@yourdomain.com" className="text-lg hover:underline">
-                                    contact@yourdomain.com
-                                </a>
-                            </div>
-                            <div className="flex items-center space-x-4">
-                                <FaMapMarkerAlt className="text-orange-500 text-xl" />
-                                <p className="text-lg">123 Main Street, City, Country</p>
-                            </div>
+                    <div className="space-y-6">
+                        <div>
+                            <h1 className="text-3xl font-bold text-gray-800">Contact Us</h1>
+                            <p className="mt-4 text-lg">We’re here to assist you. Feel free to reach out!</p>
+                        </div>
+                        <div className="flex items-center space-x-4">
+                            <FaPhoneAlt className="text-orange-500 text-xl" />
+                            <a href="tel:+1234567890" className="text-lg hover:underline">
+                                02038761531
+                            </a>
+                        </div>
+                        <div className="flex items-center space-x-4">
+                            <FaEnvelope className="text-orange-500 text-xl" />
+                            <a href="mailto:contact@yourdomain.com" className="text-lg hover:underline">
+                                info@demandrecruitmentservices.co.uk
+                            </a>
+                        </div>
+                        <div className="flex items-center space-x-4">
+                            <p className="text-orange-500 text-xl font-bold">Operating Address:</p>
+                            <p className="text-lg">Demand Recruitment Services Ltd, First Floor Office 3, Ealing House, 33 Hanger Lane, London - W5 3HJ</p>
+                        </div>
+                        <div className="flex items-center space-x-4">
+                            <p className="text-orange-500 text-xl font-bold">Registered Office Address:</p>
+                            <p className="text-lg">Demand Recruitment Services Ltd
+                                20-22 Wenlock Road ,  London England - N1 7GU
+                            </p>
+                        </div>
+                        <div className="flex items-center space-x-4">
+                            <p className="text-orange-500 text-xl font-bold">Business Hours:</p>
+                            <p className="text-lg">123 Main Street, City, Country</p>
+                        </div>
+                        <div className="flex gap-6 sm:gap-8 justify-center items-center border border-orange-400 rounded-lg p-4 shadow-md">
+                            <FaFacebook className="text-orange-600 text-3xl cursor-pointer transition-transform duration-200 hover:scale-110" />
+                            <FaTwitter className="text-orange-400 text-3xl cursor-pointer transition-transform duration-200 hover:scale-110" />
+                            <FaLinkedin className="text-orange-700 text-3xl cursor-pointer transition-transform duration-200 hover:scale-110" />
                         </div>
                     </div>
 

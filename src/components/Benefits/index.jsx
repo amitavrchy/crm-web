@@ -5,19 +5,19 @@ function Benefits() {
   const benefits = [
     {
       icon: <FaBriefcase />,
-      title: "Vast Job Opportunities",
+      title: "Access to exclusive job listings",
       description:
         "Access a wide range of job listings across various industries to find the perfect match for your skills.",
     },
     {
       icon: <FaUserTie />,
-      title: "Personalized Career Guidance",
+      title: "Flexible working arrangements",
       description:
         "Receive expert advice and resources tailored to your career goals to help you succeed.",
     },
     {
       icon: <FaChartLine />,
-      title: "Career Growth",
+      title: "Competitive pay and benefits",
       description:
         "Explore opportunities that offer professional development and career advancement.",
     },

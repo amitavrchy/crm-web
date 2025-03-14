@@ -94,7 +94,7 @@ const ApplyPage = () => {
           </div>
           <div className="bg-white rounded-lg shadow-lg p-8 lg:p-12">
             <h1 className="text-3xl font-bold text-gray-800 text-center mb-6">
-              Apply for Job ID: {jobId}
+              Quick Apply and Upload Resume
             </h1>
             <form className="space-y-6" onSubmit={handleSubmit}>
               <div>

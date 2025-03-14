@@ -29,8 +29,8 @@ function AllJobs() {
                     const data = await res.json();
                     setJobs(data);
                     setFilteredJobs(data);
-                    setCategories(["All", ...new Set(data.map((job) => job.category))]);
-                    setLocations(["All", ...new Set(data.map((job) => job.location))]);
+                    setCategories(["All Categories", ...new Set(data.map((job) => job.category))]);
+                    setLocations(["All Locations    ", ...new Set(data.map((job) => job.location))]);
                 } else {
                     setError("Failed to fetch jobs. Please try again later.");
                 }
@@ -98,7 +98,7 @@ function AllJobs() {
         <div>
             <Navbar />
             <div className="bg-gray-50 min-h-screen text-gray-800 flex flex-col">
-                <div className="max-w-7xl mx-auto px-4 py-8">
+                <div className="w-4/5 mx-auto px-4 py-8">
                     <h1 className="text-4xl font-bold text-center mb-8 text-gray-800">
                         Explore Your Next Opportunity
                     </h1>
@@ -132,8 +132,8 @@ function AllJobs() {
                         <div className="relative">
                             <input
                                 type="text"
-                                className="p-2 pl-10 rounded border border-gray-300 shadow-sm focus:ring focus:ring-blue-200"
-                                placeholder="Search jobs..."
+                                className="p-2 pl-10 rounded border border-gray-300 shadow-sm focus:ring focus:ring-blue-200 w-[450px]"
+                                placeholder="Search jobs by keyword, name or salary"
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                             />
@@ -143,7 +143,7 @@ function AllJobs() {
 
                     {/* Job Listings */}
                     {filteredJobs.length > 0 ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div className="grid grid-cols-1 gap-6">
                             {currentJobs.map((job) => (
                                 <div
                                     key={job._id}
@@ -158,14 +158,16 @@ function AllJobs() {
                                         <FaMapMarkerAlt className="mr-2" /> {job.location}
                                     </p>
                                     <p className="text-sm text-gray-700 mb-4">{job.description}</p>
-                                    {job.salary && (
-                                        <p className="flex items-center text-sm text-green-600 font-semibold">
-                                            <FaMoneyBillWave className="mr-2" /> Salary: ${job.salary}
+                                    <div className="flex items-center justify-between">
+                                        {job.salary && (
+                                            <p className="flex items-center text-sm text-green-600 font-semibold">
+                                                <FaMoneyBillWave className="mr-2" /> Salary: ${job.salary}
+                                            </p>
+                                        )}
+                                        <p className="text-xs text-gray-500 mt-4">
+                                            Posted on: {new Date(job.postedAt).toLocaleDateString()}
                                         </p>
-                                    )}
-                                    <p className="text-xs text-gray-500 mt-4">
-                                        Posted on: {new Date(job.postedAt).toLocaleDateString()}
-                                    </p>
+                                    </div>
                                 </div>
                             ))}
                         </div>

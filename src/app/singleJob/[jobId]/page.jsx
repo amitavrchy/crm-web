@@ -3,7 +3,6 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { useParams } from "next/navigation";
-import singleJob from "../../../../public/singleJob.jpg";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import {
@@ -72,14 +71,7 @@ function SingleJob() {
       <Navbar />
 
       {/* Banner Section */}
-      <div className="relative w-full h-96">
-        <Image
-          src={singleJob}
-          alt="Job Banner"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-70"
-        />
+      <div className="bg-gradient-to-r from-blue-900 to-gray-700 relative w-full h-32">
         <div className="absolute inset-0 flex items-center justify-center">
           <h1 className="text-4xl font-bold text-white">{job.title}</h1>
         </div>
@@ -128,27 +120,31 @@ function SingleJob() {
                 </button>
               </Link>
             </div>
-            <div className="my-4">
-              <div className="flex gap-6 sm:gap-8 justify-center items-center border border-orange-400 rounded-lg p-4 shadow-md">
-                <FaFacebook className="text-orange-600 text-3xl cursor-pointer transition-transform duration-200 hover:scale-110" />
-                <FaTwitter className="text-orange-400 text-3xl cursor-pointer transition-transform duration-200 hover:scale-110" />
-                <FaLinkedin className="text-orange-700 text-3xl cursor-pointer transition-transform duration-200 hover:scale-110" />
-              </div>
-            </div>
-
           </div>
           <div className="md:col-span-1 sticky top-20 flex flex-col gap-6">
             <div className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center text-center">
               <FaBuilding className="text-3xl text-blue-500 mb-3" />
-              <p className="font-bold text-lg">{job.company}</p>
+              <p className="mb-2 font-bold">Company Name</p>
+              <p className="text-lg">{job.company}</p>
             </div>
             <div className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center text-center">
               <FaMapMarkerAlt className="text-3xl text-green-500 mb-3" />
-              <p className="font-bold text-lg">{job.location}</p>
+              <p className="mb-2 font-bold">Location</p>
+              <p className="text-lg">{job.location}</p>
             </div>
             <div className="bg-white shadow-md rounded-lg p-4 flex flex-col items-center text-center">
               <FaMoneyBillWave className="text-3xl text-yellow-500 mb-3" />
-              <p className="font-bold text-lg">{job.salary ? `$${job.salary}` : "Not specified"}</p>
+              <p className="mb-2 font-bold">Salary</p>
+              <p className="text-lg">{job.salary ? `$${job.salary}` : "Not specified"}</p>
+            </div>
+            <div>
+              <div className="my-4">
+                <div className="flex gap-6 sm:gap-8 justify-center items-center border border-orange-400 rounded-lg p-4 shadow-md">
+                  <FaFacebook className="text-orange-600 text-3xl cursor-pointer transition-transform duration-200 hover:scale-110" />
+                  <FaTwitter className="text-orange-400 text-3xl cursor-pointer transition-transform duration-200 hover:scale-110" />
+                  <FaLinkedin className="text-orange-700 text-3xl cursor-pointer transition-transform duration-200 hover:scale-110" />
+                </div>
+              </div>
             </div>
           </div>
         </div>

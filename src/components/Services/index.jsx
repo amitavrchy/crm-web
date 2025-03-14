@@ -6,21 +6,39 @@ import img3 from "../../../public/about-us-wte/3.jpg";
 
 const services = [
   {
-    title: "Candidate Sourcing",
+    title: "Recruitment Services ",
     description:
-      "We use advanced search technologies to find the best-qualified candidates for your open positions.",
+      "Providing permanent, temporary, and contract staffing solutions tailored to your business needs.",
     icon: "✅",
   },
   {
-    title: "Job Placement",
+    title: "Managed Service Provider (MSP)",
     description:
-      "We connect job seekers with top employers and help them find fulfilling careers.",
+      "Streamlining your hiring processes with centralized workforce management solutions.",
     icon: "📋",
   },
   {
-    title: "Career Counseling",
+    title: "Staffing Bank Solutions",
     description:
-      "We provide expert guidance to help job seekers improve their resumes, interview skills, and career paths.",
+      "A flexible, on-demand staffing pool to ensure seamless business operations.",
+    icon: "🎯",
+  },
+  {
+    title: "Recruitment Process Outsourcing (RPO)",
+    description:
+      "Handling your recruitment processes from sourcing to onboarding, improving efficiency and cost-effectiveness.",
+    icon: "✅",
+  },
+  {
+    title: "Facility Management",
+    description:
+      "Offering specialized workforce solutions for maintenance, security, and operational support.",
+    icon: "📋",
+  },
+  {
+    title: "Community Services Staffing ",
+    description:
+      "Supporting organizations with qualified professionals to enhance community well-being.",
     icon: "🎯",
   },
 ];
@@ -56,8 +74,7 @@ export default function Services() {
       <div className="container mx-auto px-6 text-center">
         <h2 className="text-4xl font-bold text-gray-900">Our Services</h2>
         <p className="mt-4 text-orange-500 max-w-2xl mx-auto font-bold">
-          We offer a wide range of recruitment services to help you find the
-          perfect candidate or land your dream job.
+          At Demand Recruitment Services Ltd, we offer a comprehensive range of staffing and workforce management services to meet the demands of various industries. Our key services include:
         </p>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {services.map((service, index) => (
@@ -65,7 +82,6 @@ export default function Services() {
               key={index}
               className="bg-gray-200 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
             >
-              <div className="text-4xl mb-4">{service.icon}</div>
               <h3 className="text-xl font-semibold text-gray-900">
                 {service.title}
               </h3>

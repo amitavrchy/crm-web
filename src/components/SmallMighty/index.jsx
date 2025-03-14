@@ -4,16 +4,14 @@ function SmallMighty() {
   return (
     <div className="bg-gradient-to-b from-white to-gray-100 text-gray-800 py-20 px-10 text-center">
       <h2 className="text-4xl font-extrabold mb-8 text-gray-800">Small but Mighty</h2>
-      <p className="text-gray-600 max-w-3xl mx-auto mb-6 text-lg leading-relaxed">
-        We might not be as big as some of the software giants that offer shift planning and workforce management solutions, but that’s not a bad thing. There’s nobody for our team to hide behind, so we’re accountable to every client.
-      </p>
-      <p className="text-gray-600 max-w-3xl mx-auto mb-12 text-lg leading-relaxed">
-        Demand Recruitment is led by a hugely experienced group of tech and business experts, who are helping companies across the world to manage staff more effectively and find operational efficiencies.
-      </p>
+      <span className="font-lg">
+        At Demand Recruitment Services Ltd, we provide end-to-end staffing solutions tailored to your business needs. Whether you're looking for permanent hires, temporary staff, or managed service solutions, we connect businesses with the right talent to drive success.
+        We specialize in Managed Service Provision, Facility Management, and Community Services, ensuring seamless workforce management across multiple industries.</span>
+
       <p className="text-gray-700 font-semibold text-2xl mb-12">
         Take a look at these numbers to see what we’ve already achieved:
       </p>
-      
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-12 max-w-6xl mx-auto">
         {[
           { number: "14,569,103", text: "Shifts planned per year (*avg)" },
