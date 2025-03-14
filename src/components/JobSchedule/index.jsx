@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { CheckCircle, User } from "lucide-react";
 import { motion } from "framer-motion";
+import "animate.css";
 
 function JobSchedule() {
   const users = [
@@ -29,10 +30,34 @@ function JobSchedule() {
   };
 
   const [selectedUser, setSelectedUser] = useState(null);
+  const sectionsRef = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate__animated", "animate__fadeInUp");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    sectionsRef.current.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      sectionsRef.current.forEach((section) => {
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, []);
 
   return (
     <div className="flex flex-col lg:flex-row items-start justify-between bg-white p-10 max-w-7xl mx-auto py-20 gap-5">
-      <div className="lg:w-1/2 text-left">
+      <div ref={(el) => sectionsRef.current.push(el)} className="lg:w-1/2 text-left">
         <h3 className="text-orange-500 font-bold text-sm uppercase">Job Scheduling</h3>
         <h2 className="text-3xl font-bold text-gray-900 mt-2">See what's going on at a glance</h2>
         <p className="text-gray-600 mt-4">
@@ -47,7 +72,7 @@ function JobSchedule() {
         </ul>
       </div>
       
-      <div className="lg:w-1/2 mt-10 lg:mt-0 bg-gray-100 p-6 rounded-lg shadow-md w-full max-w-lg flex flex-col">
+      <div ref={(el) => sectionsRef.current.push(el)} className="lg:w-1/2 mt-10 lg:mt-0 bg-gray-100 p-6 rounded-lg shadow-md w-full max-w-lg flex flex-col">
         {users.map((user, index) => (
           <div
             key={index}
@@ -70,6 +95,7 @@ function JobSchedule() {
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.3 }}
+          ref={(el) => sectionsRef.current.push(el)}
           className="lg:w-1/3 bg-white p-4 rounded-lg shadow-md ml-6"
         >
           <h3 className="text-lg font-bold text-gray-900">Tasks for {selectedUser}</h3>

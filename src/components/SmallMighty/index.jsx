@@ -1,14 +1,44 @@
-import React from "react";
+"use client"
+import React, { useEffect, useRef } from "react";
+import "animate.css";
 
 function SmallMighty() {
-  return (
-    <div className="bg-gradient-to-b from-white to-gray-100 text-gray-800 py-20 px-10 text-center">
-      <h2 className="text-4xl font-extrabold mb-8 text-gray-800">Small but Mighty</h2>
-      <span className="font-lg">
-        At Demand Recruitment Services Ltd, we provide end-to-end staffing solutions tailored to your business needs. Whether you're looking for permanent hires, temporary staff, or managed service solutions, we connect businesses with the right talent to drive success.
-        We specialize in Managed Service Provision, Facility Management, and Community Services, ensuring seamless workforce management across multiple industries.</span>
+  const sectionRef = useRef(null);
 
-      <p className="text-gray-700 font-semibold text-2xl mb-12">
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate__animated", "animate__fadeInUp");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const elements = sectionRef.current.querySelectorAll(".animate-on-scroll");
+    elements.forEach((el) => observer.observe(el));
+
+    return () => elements.forEach((el) => observer.unobserve(el));
+  }, []);
+
+  return (
+    <div
+      ref={sectionRef}
+      className="bg-gradient-to-b from-white to-gray-100 text-gray-800 py-20 px-10 text-center"
+    >
+      <h2 className="text-4xl font-extrabold mb-8 text-gray-800 animate-on-scroll">
+        Small but Mighty
+      </h2>
+      <span className="font-lg animate-on-scroll">
+        At Demand Recruitment Services Ltd, we provide end-to-end staffing solutions tailored to your business needs.
+        Whether you're looking for permanent hires, temporary staff, or managed service solutions, we connect businesses
+        with the right talent to drive success. We specialize in Managed Service Provision, Facility Management, and
+        Community Services, ensuring seamless workforce management across multiple industries.
+      </span>
+
+      <p className="text-gray-700 font-semibold text-2xl mb-12 animate-on-scroll">
         Take a look at these numbers to see what we’ve already achieved:
       </p>
 
@@ -24,7 +54,10 @@ function SmallMighty() {
           { number: "10,452", text: "Hot drinks consumed in one year" },
           { number: "1", text: "Minutes of un-scheduled downtime since inception" },
         ].map((item, index) => (
-          <div key={index} className="text-center bg-white p-8 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 hover:shadow-xl">
+          <div
+            key={index}
+            className="text-center bg-white p-8 rounded-xl shadow-lg transform hover:scale-105 transition duration-300 hover:shadow-xl animate-on-scroll"
+          >
             <p className="text-4xl font-extrabold text-gray-800">{item.number}</p>
             <p className="text-gray-600 mt-3 text-lg font-medium">{item.text}</p>
           </div>

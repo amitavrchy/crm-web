@@ -1,5 +1,7 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
 import Image from "next/image";
+import "animate.css";
 import img1 from "../../../public/about-us-wte/1.jpg";
 import img2 from "../../../public/about-us-wte/2.jpg";
 import img3 from "../../../public/about-us-wte/3.jpg";
@@ -68,18 +70,54 @@ const advancedServices = [
 ];
 
 export default function Services() {
+  const sectionsRef = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate__animated", "animate__fadeInUp");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    sectionsRef.current.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      sectionsRef.current.forEach((section) => {
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, []);
+
   return (
     <section className="py-16 bg-gray-100">
       {/* Main Services Section */}
       <div className="container mx-auto px-6 text-center">
-        <h2 className="text-4xl font-bold text-gray-900">Our Services</h2>
-        <p className="mt-4 text-orange-500 max-w-2xl mx-auto font-bold">
-          At Demand Recruitment Services Ltd, we offer a comprehensive range of staffing and workforce management services to meet the demands of various industries. Our key services include:
+        <h2
+          ref={(el) => sectionsRef.current.push(el)}
+          className="text-4xl font-bold text-gray-900"
+        >
+          Our Services
+        </h2>
+        <p
+          ref={(el) => sectionsRef.current.push(el)}
+          className="mt-4 text-orange-500 max-w-2xl mx-auto font-bold"
+        >
+          At Demand Recruitment Services Ltd, we offer a comprehensive range of
+          staffing and workforce management services to meet the demands of
+          various industries. Our key services include:
         </p>
         <div className="mt-12 grid gap-6 md:grid-cols-3">
           {services.map((service, index) => (
             <div
               key={index}
+              ref={(el) => sectionsRef.current.push(el)}
               className="bg-gray-200 p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
             >
               <h3 className="text-xl font-semibold text-gray-900">
@@ -97,6 +135,7 @@ export default function Services() {
           {advancedServices.map((item, index) => (
             <div
               key={index}
+              ref={(el) => sectionsRef.current.push(el)}
               className="relative rounded-lg overflow-hidden shadow-md group"
             >
               {/* Background Image */}

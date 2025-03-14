@@ -1,5 +1,7 @@
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
 import { FaBriefcase, FaUserTie, FaChartLine } from "react-icons/fa";
+import "animate.css";
 
 function Benefits() {
   const benefits = [
@@ -23,11 +25,39 @@ function Benefits() {
     },
   ];
 
+  const sectionsRef = useRef([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate__animated", "animate__fadeInUp");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    sectionsRef.current.forEach((section) => {
+      if (section) observer.observe(section);
+    });
+
+    return () => {
+      sectionsRef.current.forEach((section) => {
+        if (section) observer.unobserve(section);
+      });
+    };
+  }, []);
+
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div
+          ref={(el) => sectionsRef.current.push(el)}
+          className="text-center mb-12"
+        >
           <h2 className="text-orange-500 font-bold text-sm uppercase tracking-wide">
             Benefits
           </h2>
@@ -44,6 +74,7 @@ function Benefits() {
           {benefits.map((benefit, index) => (
             <div
               key={index}
+              ref={(el) => sectionsRef.current.push(el)}
               className="flex flex-col items-center text-center bg-gray-50 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300"
             >
               {/* Icon */}
