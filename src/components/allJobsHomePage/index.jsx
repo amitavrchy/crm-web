@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FaBuilding, FaMapMarkerAlt, FaMoneyBillWave, FaBriefcase, FaUsers } from "react-icons/fa";
+import Image from "next/image";
 import "animate.css";
+// import demoCompany from "../../../"
 
 function AllJobsHomePage() {
     const [jobs, setJobs] = useState([]);
@@ -98,17 +100,18 @@ function AllJobsHomePage() {
                             <div
                                 key={job._id}
                                 onClick={() => handleJobClick(job._id)}
-                                className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all cursor-pointer animate__animated animate__fadeInUp animate__delay-1s hover:animate__pulse"
+                                className="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition-all cursor-pointer animate__animated animate__fadeInUp animate__delay-1s hover:animate__pulse flex justify-between items-center"
                             >
-                                <h2 className="text-xl font-bold text-gray-700 mb-2">{job.title}</h2>
-                                <p className="flex items-center text-sm text-gray-600 mb-2">
-                                    <FaBuilding className="mr-2" /> {job.company}
-                                </p>
-                                <p className="flex items-center text-sm text-gray-600 mb-2">
-                                    <FaMapMarkerAlt className="mr-2" /> {job.location}
-                                </p>
-                                <p className="text-sm text-gray-700 mb-4">{job.description}</p>
-                                <div className="flex justify-between items-center">
+                                {/* Left Side - Job Details */}
+                                <div className="w-3/4">
+                                    <h2 className="text-xl font-bold text-gray-700 mb-2">{job.title}</h2>
+                                    <p className="flex items-center text-sm text-gray-600 mb-2">
+                                        <FaBuilding className="mr-2" /> {job.company}
+                                    </p>
+                                    <p className="flex items-center text-sm text-gray-600 mb-2">
+                                        <FaMapMarkerAlt className="mr-2" /> {job.location}
+                                    </p>
+                                    <p className="text-sm text-gray-700 mb-4">{job.description}</p>
                                     {job.salary && (
                                         <p className="flex items-center text-sm text-green-600 font-semibold">
                                             <FaMoneyBillWave className="mr-2" /> Salary: ${job.salary}
@@ -117,6 +120,17 @@ function AllJobsHomePage() {
                                     <p className="text-xs text-gray-500 mt-4">
                                         Posted on: {new Date(job.postedAt).toLocaleDateString()}
                                     </p>
+                                </div>
+
+                                {/* Right Side - Job Image */}
+                                <div className="w-24 h-24 relative">
+                                    <Image
+                                        src={"/demo_company.png"} // Fallback image
+                                        alt={job.title}
+                                        layout="fill"
+                                        objectFit="cover"
+                                        className="rounded-lg"
+                                    />
                                 </div>
                             </div>
                         ))}
