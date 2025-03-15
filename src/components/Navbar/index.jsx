@@ -153,7 +153,7 @@ const Navbar = () => {
                         <Link href="/contactUs" className="hover:text-gray-400 transition">Contact Us</Link>
                         <Link href="/aboutUs" className="hover:text-gray-400 transition">About Us</Link>
                         <Link href="/employer" className="border-2 border-orange-500 bg-transparent hover:bg-orange-600 text-white px-6 py-2 rounded-lg transition">Employer</Link>
-                        <Link href="/employees" className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg transition">Employee</Link>
+                        <Link href="/employees" className="border-2 border-orange-500 bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg transition">Employee</Link>
                     </div>
 
                     {/* Mobile Menu Toggle */}
