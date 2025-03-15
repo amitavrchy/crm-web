@@ -61,11 +61,11 @@ const Navbar = () => {
                 <div className="flex items-center space-x-4 mb-2 md:mb-0">
                     <div className="flex items-center space-x-1">
                         <FaEnvelope className="text-yellow-400" />
-                        <span>admin@user.com</span>
+                        <span>info@demandrecruitmentservices.co.uk</span>
                     </div>
                     <div className="flex items-center space-x-1">
                         <FaPhoneAlt className="text-yellow-400" />
-                        <span>+00000000000</span>
+                        <span>+44 0203 876 1531</span>
                     </div>
                 </div>
                 <div className="flex space-x-6">
@@ -117,9 +117,9 @@ const Navbar = () => {
                             {/* Submenu */}
                             {isSubmenuVisible && (
                                 <div className="absolute bg-white text-gray-800 shadow-xl w-48 mt-2 p-4 rounded-lg z-10">
-                                    <Link href="/services/recruitment" className="block py-2 hover:text-gray-800 transition">Recruitment</Link>
-                                    <Link href="/services/community" className="block py-2 hover:text-gray-800 transition">Community Services</Link>
-                                    <Link href="/services/facility" className="block py-2 hover:text-gray-800 transition">Facility Management</Link>
+                                    <Link href="/recruitment" className="block py-2 hover:text-[#EA580C] transition">Recruitment Services</Link>
+                                    <Link href="/communityService" className="block py-2 hover:text-[#EA580C] transition">Community Services</Link>
+                                    <Link href="/facilityService" className="block py-2 hover:text-[#EA580C] transition">Facility Management</Link>
                                 </div>
                             )}
                         </div>
