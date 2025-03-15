@@ -42,7 +42,7 @@ const facilityServices = [
         services: [
             { name: "Office Space Planning & Setup", link: "/officeSetup" },
             { name: "Cleaning & Sanitization Services", link: "/cleaningSanitization" },
-            { name: "IT & Technical Support", link: "/itSupport" },
+            { name: "IT & Technical Support", link: "/itTechStaffing" },
         ],
     },
 ];

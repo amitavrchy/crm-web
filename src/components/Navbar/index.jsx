@@ -13,20 +13,27 @@ const Navbar = () => {
     const router = useRouter();
     const { data: session, status } = useSession();
     const userType = session?.user?.userType?.toLowerCase();
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isSubmenuVisible, setIsSubmenuVisible] = useState(false);
-    let dropdownTimeout;
+    const [isServicesMenuOpen, setIsServicesMenuOpen] = useState(false);
+    const [isInsightsMenuOpen, setIsInsightsMenuOpen] = useState(false);
 
-    const handleMouseEnter = () => {
+    const handleMouseEnter = (menu) => {
         clearTimeout(dropdownTimeout);
-        setIsSubmenuVisible(true);
+        if (menu === "services") {
+            setIsServicesMenuOpen(true);
+            setIsInsightsMenuOpen(false);
+        } else if (menu === "insights") {
+            setIsInsightsMenuOpen(true);
+            setIsServicesMenuOpen(false);
+        }
     };
 
     const handleMouseLeave = () => {
         dropdownTimeout = setTimeout(() => {
-            setIsSubmenuVisible(false);
-        }, 200); // 200ms delay before closing
+            setIsServicesMenuOpen(false);
+            setIsInsightsMenuOpen(false);
+        }, 200)
     };
+    let dropdownTimeout;
 
     const dashboardRoutes = {
         admin: "/dashboard/admin",
@@ -108,14 +115,16 @@ const Navbar = () => {
                         {/* Services Dropdown */}
                         <div
                             className="relative"
-                            onMouseEnter={handleMouseEnter}
+                            onMouseEnter={() => handleMouseEnter("services")}
                             onMouseLeave={handleMouseLeave}
                         >
-                            <button className="hover:text-gray-400 transition flex items-center">
-                                Our Services ▼
-                            </button>
+                            <Link href="/services">
+                                <button className="hover:text-gray-400 transition flex items-center">
+                                    Our Services ▼
+                                </button>
+                            </Link>
                             {/* Submenu */}
-                            {isSubmenuVisible && (
+                            {isServicesMenuOpen && (
                                 <div className="absolute bg-white text-gray-800 shadow-xl w-48 mt-2 p-4 rounded-lg z-10">
                                     <Link href="/recruitment" className="block py-2 hover:text-[#EA580C] transition">Recruitment Services</Link>
                                     <Link href="/communityService" className="block py-2 hover:text-[#EA580C] transition">Community Services</Link>
@@ -123,10 +132,28 @@ const Navbar = () => {
                                 </div>
                             )}
                         </div>
+                        <div
+                            className="relative"
+                            onMouseEnter={() => handleMouseEnter("insights")}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            <button className="hover:text-gray-400 transition flex items-center">
+                                Insights ▼
+                            </button>
+                            {/* Submenu */}
+                            {isInsightsMenuOpen && (
+                                <div className="absolute bg-white text-gray-800 shadow-xl w-48 mt-2 p-4 rounded-lg z-10">
+                                    <Link href="/employerResource" className="block py-2 hover:text-[#EA580C] transition">Employer Resource</Link>
+                                    <Link href="/jobSeekerResource" className="block py-2 hover:text-[#EA580C] transition">Job Seeker Resource</Link>
+                                </div>
+                            )}
+                        </div>
 
-                        <Link href="/allJobs" className="hover:text-gray-400 transition">Job Search</Link>
+                        <Link href="/allJobs" className="hover:text-gray-400 transition">Find a Job</Link>
                         <Link href="/contactUs" className="hover:text-gray-400 transition">Contact Us</Link>
-                        <Link href="/aboutUs" className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg transition">About Us</Link>
+                        <Link href="/aboutUs" className="hover:text-gray-400 transition">About Us</Link>
+                        <Link href="/employer" className="border-2 border-orange-500 bg-transparent hover:bg-orange-600 text-white px-6 py-2 rounded-lg transition">Employer</Link>
+                        <Link href="/employees" className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg transition">Employee</Link>
                     </div>
 
                     {/* Mobile Menu Toggle */}
